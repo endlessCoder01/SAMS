@@ -16,7 +16,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "Authserver": "nodemon authIndex.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

@@ -24,14 +24,7 @@ app.get("/posts", authenticateToken, (req, res) => {
   res.json(posts.filter(post => post.username === req.user.name));
 });
 
-app.post('/login', (req, res) => {
-    //authenticate user using bcrypt
 
-    const username = req.body.username
-    const user = {name: username}
-    const accessToken = jwt.sign(user, process.env.JWT_SECRET)
-    res.json({accessToken: accessToken})
-})
 
 function authenticateToken(req, res, next){
 //Bearer Token
