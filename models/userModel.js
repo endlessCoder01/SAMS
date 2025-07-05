@@ -14,12 +14,18 @@ const getUserByEmail = async (email) => {
 };
 
 const getUserById = async (id) => {
-  const [rows] = await db.query('SELECT id, name, email FROM users WHERE id = ?', [id]);
+  const [rows] = await db.query('SELECT user_id, name, email FROM users WHERE user_id = ?', [id]);
+  return rows[0];
+};
+
+const getAllUsers = async () => {
+  const [rows] = await db.query('SELECT * FROM users');
   return rows[0];
 };
 
 module.exports = {
   createUser,
+  getAllUsers,
   getUserByEmail,
   getUserById,
 };
