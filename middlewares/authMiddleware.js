@@ -10,8 +10,8 @@ const authenticateToken = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.status(403).json({ error: 'Invalid token' });
-console.log("honai", req.user);
     req.user = decoded;
+    console.log("honai", req.user);
     next();
   });
 };
