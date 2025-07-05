@@ -10,6 +10,7 @@ const getAllUsers = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
+  console.log("id", req.params.id)
   try {
     const user = await userService.getUser(req.params.id);
     res.json(user);
