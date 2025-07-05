@@ -16,9 +16,12 @@ app.post('/test', (req, res) => {
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const farmRoutes = require('./routes/farmRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use('/farms', farmRoutes);
+
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
