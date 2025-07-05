@@ -17,10 +17,12 @@ app.post('/test', (req, res) => {
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const farmRoutes = require('./routes/farmRoutes');
+const cropRoutes = require('./routes/cropRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/farms', farmRoutes);
+app.use('/crops', cropRoutes);
 
 
 const PORT = process.env.PORT;
