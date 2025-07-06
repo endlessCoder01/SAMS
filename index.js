@@ -21,6 +21,7 @@ const cropRoutes = require('./routes/cropRoutes');
 const sensorRoutes = require('./routes/sensorRoutes');
 const sensorReadingRoutes = require('./routes/sensorReadingRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
+const documentRoutes = require('./routes/documentRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
@@ -29,6 +30,7 @@ app.use('/crops', cropRoutes);
 app.use('/sensors', sensorRoutes);
 app.use('/sensor-readings', sensorReadingRoutes);
 app.use('/recommendations', recommendationRoutes);
+app.use('/documentation', documentRoutes);
 
 
 const PORT = process.env.PORT;
