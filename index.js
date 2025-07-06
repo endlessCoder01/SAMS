@@ -24,6 +24,7 @@ const recommendationRoutes = require('./routes/recommendationRoutes');
 const documentRoutes = require('./routes/documentRoutes');
 const alertRoutes = require('./routes/alertRoutes');
 const testRoutes = require('./routes/testRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
@@ -35,6 +36,7 @@ app.use('/recommendations', recommendationRoutes);
 app.use('/documentation', documentRoutes);
 app.use('/alert', alertRoutes);
 app.use('/test', testRoutes);
+app.use('/task', taskRoutes);
 
 
 const PORT = process.env.PORT;
