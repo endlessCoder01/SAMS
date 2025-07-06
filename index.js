@@ -25,6 +25,7 @@ const documentRoutes = require('./routes/documentRoutes');
 const alertRoutes = require('./routes/alertRoutes');
 const testRoutes = require('./routes/testRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const farm_memberRoutes = require('./routes/farm_memberRoutes')
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
@@ -37,6 +38,7 @@ app.use('/documentation', documentRoutes);
 app.use('/alert', alertRoutes);
 app.use('/test', testRoutes);
 app.use('/task', taskRoutes);
+app.use('/farm-member', farm_memberRoutes);
 
 
 const PORT = process.env.PORT;
