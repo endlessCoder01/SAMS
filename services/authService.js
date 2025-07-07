@@ -19,12 +19,12 @@ const loginUser = async ({ email, password }) => {
   const isMatch = await bcrypt.compare(password, user.password_hash);
   if (!isMatch) throw new Error("Invalid credentials");
 
-  const userDetails = { userId: user.id, email: user.email };
+  const userDetails = { userId: user.user_id, email: user.email };
   const token = generateAccessToken(userDetails);
   const refreshToken = generateRefreshToken(userDetails)
-  const db = await userModel.saveRefreshToken(user.id, refreshToken);
-  console.log("aaah", db);
-  return {token, refreshToken, db};
+  await userModel.saveRefreshToken(user.user_id, refreshToken);
+
+  return {token, refreshToken};
 };
 
 const refreshAccessToken = async (refreshToken) => {

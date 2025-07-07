@@ -25,9 +25,6 @@ const getAllUsers = async () => {
 
 const saveRefreshToken = async (userId, token) => {
   const [rows] = await db.query('UPDATE users SET refresh_token = ? WHERE user_id = ?', [token, userId]);
-  console.log("rows", rows)
-
-  return rows[0];
 };
 
 
