@@ -18,14 +18,38 @@ const loginUser = async ({ email, password }) => {
 
   const isMatch = await bcrypt.compare(password, user.password_hash);
   if (!isMatch) throw new Error("Invalid credentials");
+
   const userDetails = { userId: user.id, email: user.email };
   const token = generateAccessToken(userDetails);
-  const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
-  return {token, refreshToken};
+  const refreshToken = generateRefreshToken(userDetails)
+  const db = await userModel.saveRefreshToken(user.id, refreshToken);
+  console.log("aaah", db);
+  return {token, refreshToken, db};
 };
+
+const refreshAccessToken = async (refreshToken) => {
+  if (!refreshToken) throw new Error('No refresh token');
+
+  const userData = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+  const user = await userModel.getUserById(userData.userId);
+
+  if (user.refresh_token !== refreshToken) throw new Error('Invalid refresh token');
+
+  const newAccessToken = generateAccessToken(user);
+  return newAccessToken;
+};
+
 
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "45s" });
 }
 
-module.exports = { registerUser, loginUser };
+function generateRefreshToken (user) {
+  return jwt.sign(
+    { userId: user.id },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: '7d' }
+  );
+};
+
+module.exports = { registerUser, loginUser, refreshAccessToken };
