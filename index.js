@@ -4,13 +4,20 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer"); 
+const fs = require('fs')
 
 require("dotenv").config();
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: "*", 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  // allowedHeaders: ["Content-Type"],
+};
+app.use(cors(corsOptions));
 
 app.post('/test', (req, res) => {
     console.log(req.body);
