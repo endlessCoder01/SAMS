@@ -41,7 +41,7 @@ const refreshAccessToken = async (refreshToken) => {
 
 
 function generateAccessToken(user) {
-  return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "45s" });
+  return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
 }
 
 function generateRefreshToken (user) {

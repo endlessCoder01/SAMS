@@ -8,27 +8,19 @@ const createTask = async ({farm_id,assigned_to, task_description, scheduled_date
   return { id: result.insertId, task_description, status };
 };
 
-// const getUserByEmail = async (email) => {
-//   const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
-//   return rows[0];
-// };
-
-// const getUserById = async (id) => {
-//   const [rows] = await db.query(
-//     "SELECT user_id, name, email FROM users WHERE user_id = ?",
-//     [id]
-//   );
-//   return rows[0];
-// };
 
 const getAllTasks = async () => {
   const [rows] = await db.query("SELECT * FROM tasks");
-  return rows[0];
+  return rows;
+};
+
+const deleteTaskById = async () => {
+  const [rows] =  await db.query("DELETE FROM tasks WHERE id = ?", [id]);
+  return rows;
 };
 
 module.exports = {
   createTask,
   getAllTasks,
-  // getUserByEmail,
-  // getUserById,
+  deleteTaskById,
 };
