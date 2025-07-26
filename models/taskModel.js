@@ -14,8 +14,8 @@ const getAllTasks = async () => {
   return rows;
 };
 
-const deleteTaskById = async () => {
-  const [rows] =  await db.query("DELETE FROM tasks WHERE id = ?", [id]);
+const deleteTaskById = async (id) => {
+  const [rows] =  await db.query("DELETE FROM tasks WHERE task_id = ?", [id]);
   return rows;
 };
 

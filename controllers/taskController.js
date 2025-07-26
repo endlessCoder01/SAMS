@@ -20,8 +20,10 @@ const createTask = async (req, res) => {
 };
 
 const deleteTask = async (req, res) => {
+  const id = req.params.id
+  console.log(id)
   try {
-    const deletedTask = await taskService.deleteTask(req.params.id);
+    const deletedTask = await taskService.deleteTask(id);
     res.status(201).json(deletedTask);
   } catch (err) {
     res.status(500).json({ error: err.message });
