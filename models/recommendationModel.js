@@ -23,7 +23,7 @@ const createRec = async ({crop_id, user_id, message, category}) => {
 
 const getAllRecs = async () => {
   const [rows] = await db.query("SELECT * FROM recommendations");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

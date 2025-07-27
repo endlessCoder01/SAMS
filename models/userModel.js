@@ -20,7 +20,7 @@ const getUserById = async (id) => {
 
 const getAllUsers = async () => {
   const [rows] = await db.query('SELECT * FROM users');
-  return rows[0];
+  return rows;
 };
 
 const saveRefreshToken = async (userId, token) => {

@@ -23,7 +23,7 @@ const createCrop = async ({farm_id, crop_type, planting_date, harvest_date, stat
 
 const getAllCrops = async () => {
   const [rows] = await db.query("SELECT * FROM crops");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

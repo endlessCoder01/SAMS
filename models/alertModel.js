@@ -23,7 +23,7 @@ const createAlert = async ({farm_id, message, type, severity}) => {
 
 const getAllAlerts = async () => {
   const [rows] = await db.query("SELECT * FROM alerts");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

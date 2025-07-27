@@ -23,7 +23,7 @@ const createDocument= async ({user_id, title, description, file_url}) => {
 
 const getAllDocuments = async () => {
   const [rows] = await db.query("SELECT * FROM documents");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

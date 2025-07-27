@@ -22,7 +22,7 @@ const createReading = async ({sensor_id, value, unit}) => {
 
 const getAllReadings = async () => {
   const [rows] = await db.query("SELECT * FROM sensor_readings");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

@@ -23,7 +23,7 @@ const createMember = async ({farm_id, user_id, role_on_farm}) => {
 
 const getAllMembers = async () => {
   const [rows] = await db.query("SELECT * FROM farm_members");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

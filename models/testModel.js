@@ -23,7 +23,7 @@ const createTest = async ({farm_id, test_type, description, tested_by, results_s
 
 const getAllTests = async () => {
   const [rows] = await db.query("SELECT * FROM tests");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

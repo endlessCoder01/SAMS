@@ -8,22 +8,10 @@ const createSensor = async ({farm_id, sensor_type, sensor_name, location, is_act
   return { id: result.insertId, sensor_name, location };
 };
 
-// const getUserByEmail = async (email) => {
-//   const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
-//   return rows[0];
-// };
-
-// const getUserById = async (id) => {
-//   const [rows] = await db.query(
-//     "SELECT user_id, name, email FROM users WHERE user_id = ?",
-//     [id]
-//   );
-//   return rows[0];
-// };
 
 const getAllSensors = async () => {
   const [rows] = await db.query("SELECT * FROM sensors");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {

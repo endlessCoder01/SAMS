@@ -29,7 +29,7 @@ const createFarm = async ({
 
 const getAllFarms = async () => {
   const [rows] = await db.query("SELECT * FROM farms");
-  return rows[0];
+  return rows;
 };
 
 module.exports = {
