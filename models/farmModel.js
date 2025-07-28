@@ -14,18 +14,117 @@ const createFarm = async ({
   return { id: result.insertId, farm_name, location };
 };
 
-// const getUserByEmail = async (email) => {
-//   const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
-//   return rows[0];
-// };
+const getAllByFarmRole = async (farmRole) => {
+  const [rows] = await db.query(
+    `
+    SELECT 
+      u.user_id,
+      u.name AS user_name,
+      u.email,
+      u.role AS user_role,
+      f.farm_id,
+      f.farm_name,
+      f.location,
+      f.size,
+      f.soil_type,
+      fm.role_on_farm,
+      fm.work_status,
+      fm.joined_at
+    FROM farm_members fm
+    JOIN users u ON fm.user_id = u.user_id
+    JOIN farms f ON fm.farm_id = f.farm_id
+    WHERE fm.role_on_farm = ?
+    ORDER BY fm.joined_at DESC
+    `,
+    [farmRole]
+  );
 
-// const getUserById = async (id) => {
-//   const [rows] = await db.query(
-//     "SELECT user_id, name, email FROM users WHERE user_id = ?",
-//     [id]
-//   );
-//   return rows[0];
-// };
+  return rows;
+};
+
+const getAllMembers = async () => {
+  const [rows] = await db.query(`
+    SELECT 
+      u.user_id,
+      u.name AS user_name,
+      u.email,
+      u.role AS user_role,
+      f.farm_id,
+      f.farm_name,
+      f.location,
+      f.size,
+      f.soil_type,
+      fm.role_on_farm,
+      fm.work_status,
+      fm.joined_at
+    FROM farm_members fm
+    JOIN users u ON fm.user_id = u.user_id
+    JOIN farms f ON fm.farm_id = f.farm_id
+    ORDER BY fm.joined_at DESC
+
+  `);
+
+  return rows;
+};
+
+const getWorkersByFarmId = async (farm_id) => {
+
+  const [rows] = await db.query(
+    `
+    SELECT 
+      u.user_id,
+      u.name AS user_name,
+      u.email,
+      u.role AS user_role,
+      f.farm_id,
+      f.farm_name,
+      f.location,
+      f.size,
+      f.soil_type,
+      fm.role_on_farm,
+      fm.work_status,
+      fm.joined_at
+    FROM farm_members fm
+    JOIN users u ON fm.user_id = u.user_id
+    JOIN farms f ON fm.farm_id = f.farm_id
+    WHERE f.farm_id = ?
+    ORDER BY fm.joined_at DESC
+  `,
+    [farm_id]
+  );
+
+  return rows;
+};
+
+const getWorkersByStatus = async (farm_id, work_status) => {
+
+  const [rows] = await db.query(
+    `
+    SELECT 
+      u.user_id,
+      u.name AS user_name,
+      u.email,
+      u.role AS user_role,
+      f.farm_id,
+      f.farm_name,
+      f.location,
+      f.size,
+      f.soil_type,
+      fm.role_on_farm,
+      fm.work_status,
+      fm.joined_at
+    FROM farm_members fm
+    JOIN users u ON fm.user_id = u.user_id
+    JOIN farms f ON fm.farm_id = f.farm_id
+    WHERE f.farm_id = ? AND fm.work_status = ?
+    ORDER BY fm.joined_at DESC
+  `,
+    [farm_id, work_status]
+  );
+
+  return rows;
+};
+
 
 const getAllFarms = async () => {
   const [rows] = await db.query("SELECT * FROM farms");
@@ -35,6 +134,8 @@ const getAllFarms = async () => {
 module.exports = {
   createFarm,
   getAllFarms,
-  // getUserByEmail,
-  // getUserById,
+  getAllByFarmRole,
+  getAllMembers,
+  getWorkersByFarmId,
+  getWorkersByStatus
 };
