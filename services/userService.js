@@ -10,6 +10,12 @@ const getUser = async (id) => {
   return user;
 };
 
+const getUserByStatus = async (status) => {
+  const users = await userModel.getUserByStatus(status);
+  if (!users) throw new Error('Users not found');
+  return users;
+};
+
 const createUser = async (userData) => {
   return await userModel.createUser(userData);
 };
@@ -18,4 +24,5 @@ module.exports = {
   getUsers,
   getUser,
   createUser,
+  getUserByStatus,
 };

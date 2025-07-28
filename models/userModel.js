@@ -18,6 +18,11 @@ const getUserById = async (id) => {
   return rows[0];
 };
 
+const getUserByStatus = async (status) => {
+  const [rows] = await db.query('SELECT * FROM users WHERE status = ?', [status]);
+  return rows;
+};
+
 const getAllUsers = async () => {
   const [rows] = await db.query('SELECT * FROM users');
   return rows;
@@ -34,4 +39,5 @@ module.exports = {
   getUserByEmail,
   getUserById,
   saveRefreshToken,
+  getUserByStatus,
 };
