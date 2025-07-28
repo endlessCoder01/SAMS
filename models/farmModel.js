@@ -42,7 +42,7 @@ const getAllByFarmRole = async (farmRole) => {
   return rows;
 };
 
-const getAllMembers = async () => {
+const getAllWorkers = async () => {
   const [rows] = await db.query(`
     SELECT 
       u.user_id,
@@ -135,7 +135,7 @@ module.exports = {
   createFarm,
   getAllFarms,
   getAllByFarmRole,
-  getAllMembers,
+  getAllWorkers,
   getWorkersByFarmId,
   getWorkersByStatus
 };

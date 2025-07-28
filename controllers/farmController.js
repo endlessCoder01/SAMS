@@ -1,4 +1,4 @@
-const farmService = require('../services/farmService');
+const farmService = require("../services/farmService");
 
 const getAllFarms = async (req, res) => {
   try {
@@ -9,15 +9,14 @@ const getAllFarms = async (req, res) => {
   }
 };
 
-// const getUserById = async (req, res) => {
-//   console.log("id", req.params.id)
-//   try {
-//     const user = await farmService.getUser(req.params.id);
-//     res.json(user);
-//   } catch (err) {
-//     res.status(404).json({ error: err.message });
-//   }
-// };
+const getAllWorkers = async (req, res) => {
+  try {
+    const farm_workers = await farmService.getAllWorkers();
+    res.json(farm_workers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 const createFarm = async (req, res) => {
   try {
@@ -30,6 +29,6 @@ const createFarm = async (req, res) => {
 
 module.exports = {
   getAllFarms,
-  // getUserById,
+  getAllWorkers,
   createFarm,
 };

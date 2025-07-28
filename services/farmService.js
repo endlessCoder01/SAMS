@@ -4,11 +4,11 @@ const getFarms = async () => {
   return await farmModel.getAllFarms();
 };
 
-// const getUser = async (id) => {
-//   const user = await userModel.getUserById(id);
-//   if (!user) throw new Error('User not found');
-//   return user;
-// };
+const getAllWorkers = async () => {
+  const workers = await farmModel.getAllWorkers();
+  if (!workers) throw new Error('User not found');
+  return workers;
+};
 
 const createFarm = async (userData) => {
   return await farmModel.createFarm(userData);
@@ -17,5 +17,5 @@ const createFarm = async (userData) => {
 module.exports = {
   createFarm,
   getFarms,
-  // createUser,
+  getAllWorkers
 };
