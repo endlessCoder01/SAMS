@@ -13,13 +13,31 @@ const createAlert = async ({farm_id, message, type, severity}) => {
 //   return rows[0];
 // };
 
-// const getUserById = async (id) => {
-//   const [rows] = await db.query(
-//     "SELECT user_id, name, email FROM users WHERE user_id = ?",
-//     [id]
-//   );
-//   return rows[0];
-// };
+const getAllAlertsByJoin  = async () => {
+  const [rows] = await db.query(`SELECT 
+  a.alert_id,
+  a.message,
+  a.type,
+  a.severity,
+  a.timestamp,
+  
+  f.farm_id,
+  f.farm_name,
+  f.location AS farm_location,
+  f.size AS farm_size,
+  f.soil_type,
+
+  u.user_id AS initiator_id,
+  u.name AS initiator_name,
+  u.email AS initiator_email,
+  u.role AS initiator_role
+
+FROM alerts a
+JOIN farms f ON a.farm_id = f.farm_id
+LEFT JOIN users u ON a.initiated_by = u.user_id;
+`);
+  return rows;
+};
 
 const getAllAlerts = async () => {
   const [rows] = await db.query("SELECT * FROM alerts");
@@ -29,6 +47,6 @@ const getAllAlerts = async () => {
 module.exports = {
   createAlert,
   getAllAlerts,
-  // getUserByEmail,
+getAllAlertsByJoin,
   // getUserById,
 };
