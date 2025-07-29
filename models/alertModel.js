@@ -44,9 +44,14 @@ const getAllAlerts = async () => {
   return rows;
 };
 
+const deleteAlertById = async (id) => {
+  const [rows] =  await db.query("DELETE FROM alerts WHERE alert_id = ?", [id]);
+  return rows;
+};
+
 module.exports = {
   createAlert,
   getAllAlerts,
 getAllAlertsByJoin,
-  // getUserById,
+deleteAlertById,
 };
