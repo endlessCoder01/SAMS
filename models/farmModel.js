@@ -125,6 +125,12 @@ const getWorkersByStatus = async (farm_id, work_status) => {
   return rows;
 };
 
+const getFarmByUserId = async (id) => {
+  // console.log("qwert", id)
+  const [rows] = await db.query('SELECT * FROM farms WHERE user_id = ?', [id]);
+  return rows;
+};
+
 
 const getAllFarms = async () => {
   const [rows] = await db.query("SELECT * FROM farms");
@@ -133,6 +139,7 @@ const getAllFarms = async () => {
 
 module.exports = {
   createFarm,
+  getFarmByUserId,
   getAllFarms,
   getAllByFarmRole,
   getAllWorkers,

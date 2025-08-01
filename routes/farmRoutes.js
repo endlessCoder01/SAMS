@@ -5,6 +5,6 @@ const authenticateToken = require('../middlewares/authMiddleware');
 
 router.get('/', authenticateToken, farmController.getAllFarms);
 router.post('/', authenticateToken, farmController.createFarm);
-// router.get('/:id', authenticateToken, userController.getUserById);
+router.get('/user/:id', authenticateToken, farmController.getFarmByUserId);
 
 module.exports = router;

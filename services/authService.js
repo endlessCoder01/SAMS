@@ -24,7 +24,7 @@ const loginUser = async ({ email, password }) => {
   const refreshToken = generateRefreshToken(userDetails)
   await userModel.saveRefreshToken(user.user_id, refreshToken);
 
-  return {token, refreshToken};
+  return {token, refreshToken, userDetails};
 };
 
 const refreshAccessToken = async (refreshToken) => {
