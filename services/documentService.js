@@ -4,11 +4,11 @@ const getDocuments = async () => {
   return await documentModel.getAllDocuments();
 };
 
-// const getUser = async (id) => {
-//   const user = await userModel.getUserById(id);
-//   if (!user) throw new Error('User not found');
-//   return user;
-// };
+const getCount = async (id) => {
+  const count = await documentModel.getDocCountById(id);
+  if (!count) throw new Error('Documents not found');
+  return count;
+};
 
 const createDocument = async (documentData) => {
   return await documentModel.createDocument(documentData);
@@ -17,5 +17,5 @@ const createDocument = async (documentData) => {
 module.exports = {
   createDocument,
   getDocuments,
-  // createUser,
+  getCount
 };

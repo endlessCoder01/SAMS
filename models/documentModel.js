@@ -13,13 +13,13 @@ const createDocument= async ({user_id, title, description, file_url}) => {
 //   return rows[0];
 // };
 
-// const getUserById = async (id) => {
-//   const [rows] = await db.query(
-//     "SELECT user_id, name, email FROM users WHERE user_id = ?",
-//     [id]
-//   );
-//   return rows[0];
-// };
+const getDocCountById = async (id) => {
+  const [rows] = await db.query(
+    "SELECT COUNT(*) FROM documents WHERE user_id = ?",
+    [id]
+  );
+  return rows[0];
+};
 
 const getAllDocuments = async () => {
   const [rows] = await db.query("SELECT * FROM documents");
@@ -29,6 +29,6 @@ const getAllDocuments = async () => {
 module.exports = {
   createDocument,
   getAllDocuments,
-  // getUserByEmail,
+  getDocCountById,
   // getUserById,
 };

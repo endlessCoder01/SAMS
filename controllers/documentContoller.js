@@ -1,4 +1,4 @@
-const documentService = require('../services/documentService');
+const documentService = require("../services/documentService");
 
 const getAllDocuments = async (req, res) => {
   try {
@@ -9,15 +9,15 @@ const getAllDocuments = async (req, res) => {
   }
 };
 
-// const getUserById = async (req, res) => {
-//   console.log("id", req.params.id)
-//   try {
-//     const user = await farmService.getUser(req.params.id);
-//     res.json(user);
-//   } catch (err) {
-//     res.status(404).json({ error: err.message });
-//   }
-// };
+const getCountById = async (req, res) => {
+  console.log("id", req.params.id);
+  try {
+    const count = await documentService.getCount(req.params.id);
+    res.json(count);
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+};
 
 const createDocument = async (req, res) => {
   try {
@@ -30,6 +30,6 @@ const createDocument = async (req, res) => {
 
 module.exports = {
   getAllDocuments,
-  // getUserById,
+  getCountById,
   createDocument,
 };

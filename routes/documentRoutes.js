@@ -5,6 +5,6 @@ const authenticateToken = require('../middlewares/authMiddleware');
 
 router.get('/', authenticateToken, documentController.getAllDocuments);
 router.post('/', authenticateToken, documentController.createDocument);
-// router.get('/:id', authenticateToken, userController.getUserById);
+router.get('/:id', authenticateToken, documentController.getCountById);
 
 module.exports = router;
