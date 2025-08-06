@@ -126,7 +126,7 @@ const getWorkersByStatus = async (farm_id, work_status) => {
 };
 
 const getFarmByUserId = async (id) => {
-  // console.log("qwert", id)
+  console.log("qwert", id)
   const [rows] = await db.query('SELECT * FROM farms WHERE user_id = ?', [id]);
   return rows;
 };

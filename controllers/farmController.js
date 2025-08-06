@@ -20,7 +20,8 @@ const getAllWorkers = async (req, res) => {
 
 const getFarmByUserId = async (req, res) => {
   try {
-    const farms = await farmService.getFarmByUserId(req.params);
+    console.log("hoyoo", req.params.id);
+    const farms = await farmService.getFarmByUserId(req.params.id);
     res.json(farms);
   } catch (err) {
     res.status(500).json({ error: err.message });
