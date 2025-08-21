@@ -19,10 +19,14 @@ const getUserByStatus = async (status) => {
 const createUser = async (userData) => {
   return await userModel.createUser(userData);
 };
+const updateUser = async (id, userData) => {
+  return await userModel.updateUser(id, userData);
+};
 
 module.exports = {
   getUsers,
   getUser,
   createUser,
+  updateUser,
   getUserByStatus,
 };
