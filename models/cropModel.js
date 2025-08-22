@@ -1,9 +1,9 @@
 const db = require("../config/db");
 
-const createCrop = async ({farm_id, crop_type, planting_date, harvest_date, status}) => {
+const createCrop = async ({farm_id, crop_type, crop_name, planting_date, harvest_date, status}) => {
   const [result] = await db.query(
-'INSERT INTO crops (`farm_id`, `crop_type`, `planting_date`, `harvest_date`, `status`) VALUES (?, ?, ?, ?, ?)',
-    [farm_id, crop_type, planting_date, harvest_date, status]
+'INSERT INTO crops (`farm_id`, `crop_type`, `crop_name`, `planting_date`, `harvest_date`, `status`) VALUES (?, ?, ?, ?, ?, ?)',
+    [farm_id, crop_type, crop_name, planting_date, harvest_date, status]
   );
   return { id: result.insertId, crop_type, status };
 };
