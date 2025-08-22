@@ -17,6 +17,15 @@ const getAllAlertsByJoin = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+const getAllAlertsByJoinId = async (req, res) => {
+  const user_id = req.params.id
+  try {
+    const alerts = await alertService.getAlertsByJoinId(user_id);
+    res.json(alerts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 const deleteAlertById = async (req, res) => {
   try {
@@ -39,6 +48,7 @@ const createAlert = async (req, res) => {
 module.exports = {
   getAllAlerts,
   getAllAlertsByJoin,
+  getAllAlertsByJoinId,
   createAlert,
   deleteAlertById,
 };

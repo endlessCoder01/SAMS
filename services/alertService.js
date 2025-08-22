@@ -6,6 +6,9 @@ const getAlerts = async () => {
 const getAlertsByJoin = async () => {
   return await alertModel.getAllAlertsByJoin();
 };
+const getAlertsByJoinId = async (id) => {
+  return await alertModel.getAllAlertsByJoin(id);
+};
 
 const deleteAlertById = async (id) => {
   return await alertModel.deleteAlertById(id);
@@ -19,5 +22,6 @@ module.exports = {
   createAlert,
   getAlerts,
 getAlertsByJoin,
+getAlertsByJoinId,
 deleteAlertById,
 };
