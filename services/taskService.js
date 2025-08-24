@@ -3,6 +3,9 @@ const taskModel = require('../models/taskModel');
 const getTasks = async () => {
   return await taskModel.getAllTasks();
 };
+const getTasksByUserId = async (id) => {
+  return await taskModel.getTasksByUserId(id);
+};
 
 const createTask = async (taskData) => {
   return await taskModel.createTask(taskData);
@@ -20,5 +23,6 @@ module.exports = {
   createTask,
   getTasks,
   updateTask,
+  getTasksByUserId,
   deleteTask
 };

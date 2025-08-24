@@ -14,6 +14,11 @@ const getAllTasks = async () => {
   return rows;
 };
 
+const getTasksByUserId = async (id) => {
+  const [rows] = await db.query("SELECT * FROM tasks WHERE assigned_to = ?", [id]);
+  return rows;
+};
+
 const updateTask = async (taskId, updates) => {
 
   console.log("maUpdates", updates)
@@ -60,6 +65,7 @@ const deleteTaskById = async (id) => {
 module.exports = {
   createTask,
   getAllTasks,
+  getTasksByUserId,
   updateTask,
   deleteTaskById,
 };

@@ -9,6 +9,15 @@ const getAllTasks = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+const getTasksByUserId = async (req, res) => {
+  const userId = req.params.id
+  try {
+    const tasks = await taskService.getTasksByUserId(userId);
+    res.json(tasks);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 const createTask = async (req, res) => {
   try {
@@ -63,6 +72,7 @@ const deleteTask = async (req, res) => {
 
 module.exports = {
   getAllTasks,
+  getTasksByUserId,
   AssignTask,
   updateTask,
   createTask,

@@ -4,6 +4,7 @@ const taskController = require('../controllers/taskController');
 const authenticateToken = require('../middlewares/authMiddleware');
 
 router.get('/', authenticateToken, taskController.getAllTasks);
+router.get('/user/:id', authenticateToken, taskController.getTasksByUserId);
 router.post('/', authenticateToken, taskController.createTask);
 router.patch('/updateTask/:id', authenticateToken, taskController.updateTask);
 router.patch('/assignTask/:id', authenticateToken, taskController.AssignTask);
