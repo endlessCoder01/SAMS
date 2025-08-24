@@ -1,12 +1,22 @@
 const db = require("../config/db");
 
-const createAlert = async ({farm_id, message, type, severity}) => {
+const createAlert = async ({ farm_id, message, type, severity, initiated_by, alert_status }) => {
   const [result] = await db.query(
-'INSERT INTO alerts (`farm_id`, `message`, `type`, `severity`) VALUES (?, ?, ?, ?)',
-    [farm_id, message, type, severity]
+    'INSERT INTO alerts (`farm_id`, `message`, `type`, `severity`, `initiated_by`, `alert_status`) VALUES (?, ?, ?, ?, ?, ?)',
+    [farm_id, message, type, severity, initiated_by, alert_status]
   );
-  return { id: result.insertId, message, severity };
+
+  return { 
+    id: result.insertId, 
+    farm_id, 
+    message, 
+    type, 
+    severity, 
+    initiated_by, 
+    alert_status 
+  };
 };
+
 
 // const getUserByEmail = async (email) => {
 //   const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);

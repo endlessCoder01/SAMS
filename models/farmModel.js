@@ -14,6 +14,34 @@ const createFarm = async ({
   return { id: result.insertId, farm_name, location };
 };
 
+const getFarmsWithMembersByUserId = async (user_id) => {
+  const [rows] = await db.query(
+    `
+    SELECT 
+      f.farm_id,
+      f.farm_name,
+      f.location,
+      f.size,
+      f.soil_type,
+      f.user_id AS owner_id,
+
+      fm.id AS member_id,
+      fm.user_id AS member_user_id,
+      fm.role_on_farm,
+      fm.work_status
+
+    FROM farms f
+    LEFT JOIN farm_members fm ON f.farm_id = fm.farm_id
+    WHERE f.user_id = ? OR fm.user_id = ?
+    `,
+    [user_id, user_id]
+  );
+
+  return rows;
+};
+
+
+
 const getAllByFarmRole = async (farmRole) => {
   const [rows] = await db.query(
     `
@@ -144,5 +172,6 @@ module.exports = {
   getAllByFarmRole,
   getAllWorkers,
   getWorkersByFarmId,
-  getWorkersByStatus
+  getWorkersByStatus,
+  getFarmsWithMembersByUserId
 };

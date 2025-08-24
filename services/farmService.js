@@ -15,6 +15,12 @@ const getFarmByUserId = async (id) => {
   return farms;
 };
 
+const getFarmsMembersByUserId = async (id) => {
+  const farms = await farmModel.getFarmsWithMembersByUserId(id);
+  if (!farms) throw new Error('User not found');
+  return farms;
+};
+
 
 const createFarm = async (userData) => {
   return await farmModel.createFarm(userData);
@@ -24,5 +30,6 @@ module.exports = {
   createFarm,
   getFarmByUserId,
   getFarms,
-  getAllWorkers
+  getAllWorkers,
+  getFarmsMembersByUserId
 };

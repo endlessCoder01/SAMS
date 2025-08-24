@@ -28,6 +28,15 @@ const getFarmByUserId = async (req, res) => {
   }
 };
 
+const getFarmsWithMembersByUserId = async (req, res) => {
+  try {
+    const farm = await farmService.getFarmsMembersByUserId(req.params.id);
+    res.json(farm);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 const createFarm = async (req, res) => {
   try {
     const newFarm = await farmService.createFarm(req.body);
@@ -41,5 +50,6 @@ module.exports = {
   getAllFarms,
   getAllWorkers,
   getFarmByUserId,
+  getFarmsWithMembersByUserId,
   createFarm,
 };
