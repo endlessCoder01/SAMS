@@ -5,8 +5,8 @@ const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const refreshHeader = req.headers["refresh"];
 
-  console.log("head", authHeader);
-  console.log("refresh", refreshHeader);
+  // console.log("head", authHeader);
+  // console.log("refresh", refreshHeader);
   const token = authHeader && authHeader.split(" ")[1];
   const refresh = refreshHeader && refreshHeader.split(" ")[1];
 
@@ -23,7 +23,7 @@ const authenticateToken = (req, res, next) => {
             if (err)
               return res.status(403).json({ error: "Invalid Refresh token" });
             req.user = decoded;
-            console.log("honai", req.user);
+            // console.log("honai", req.user);
             next();
           }
         );
@@ -32,7 +32,7 @@ const authenticateToken = (req, res, next) => {
       }
     } else {
       req.user = decoded;
-      console.log("honai futi", req.user);
+      // console.log("honai futi", req.user);
       next();
     }
   });

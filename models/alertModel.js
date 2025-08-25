@@ -30,6 +30,7 @@ const getAllAlertsByJoinId = async (id) => {
       a.message,
       a.type,
       a.severity,
+      a.alert_status
       a.timestamp,
       
       f.farm_id,
@@ -59,6 +60,7 @@ const getAllAlertsByJoin  = async () => {
   a.message,
   a.type,
   a.severity,
+  a.alert_status,
   a.timestamp,
   
   f.farm_id,
